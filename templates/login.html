@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Black box</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #E0E0E0;
+        }
+        
+        .login-container {
+            background-color: #1E1E1E;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center; /* Centra los elementos horizontalmente */
+        }
+        
+        .login-container h2 {
+            text-align: center;
+            color: #BB86FC;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column; /* Organiza los labels e inputs en columnas */
+        }
+        
+        .form-group label {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input, .btn {
+            padding: 15px;
+            font-size: 2.7rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #2C2C2C;
+            color: #E0E0E0;
+        }
+        
+        .btn {
+            background-color: #BB86FC;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background-color: #9C6BF3;
+        }
+        
+        .error {
+            color: #CF6679;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>AI Chatbot Login by Charles DRR</h2>
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" id="usuario" name="usuario" placeholder="Usuario" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn">Iniciar Sesión</button>
+            {% if error %}
+                <div class="error">{{ error }}</div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
