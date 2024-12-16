@@ -4,6 +4,7 @@ import hashlib
 import google.generativeai as genai
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from functools import wraps
+import requests
 
 # Configurar la API de Google Generative AI
 genai.configure(api_key='AIzaSyArx0mh-l9Edjpl8nbi9gae28J_fXnUbh8')
@@ -45,46 +46,16 @@ AVAILABLE_MODELS = {
     'learnml-1.5-pro-experimental': 'learnml-1.5-pro-experimental'
 }
 
-# Usa una forma más segura de almacenar contraseñas
-USUARIOS = {
-    'admin': hashlib.sha256('-qX3NSZRuvAEpv'.encode()).hexdigest()
-}
-
-def login_required(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if 'usuario' not in session:
-            return redirect(url_for('login'))
-        return f(*args, **kwargs)
-    return decorated_function
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    error = None
-    if request.method == 'POST':
-        usuario = request.form['usuario']
-        password = hashlib.sha256(request.form['password'].encode()).hexdigest()
-        
-        if usuario in USUARIOS and USUARIOS[usuario] == password:
-            session['usuario'] = usuario
-            return redirect(url_for('index'))
-        else:
-            error = 'Credenciales inválidas'
-    
-    return render_template('login.html', error=error)
-
-@app.route('/logout')
-def logout():
-    session.pop('usuario', None)
-    return redirect(url_for('login'))
 
 @app.route('/')
-@login_required
 def index():
+    user_agent = request.headers.get('User-Agent', '').lower()
+    if 'median' not in user_agent:
+        return render_template('403.html', message="Acceso restringido al Samsung A71."), 403
+
     return render_template('index.html', modelos=AVAILABLE_MODELS)
 
 @app.route('/chat', methods=['POST'])
-@login_required
 def chat():
     global model
     global chat_session
