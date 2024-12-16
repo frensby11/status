@@ -36,7 +36,7 @@ app.secret_key = os.urandom(24)  # Clave secreta para sesiones
 # Configuraciones de modelos y usuarios
 AVAILABLE_MODELS = {
     'gemini-pro': 'gemini-pro',
-    'gemini-1.5-pro': 'Models',
+    'gemini-1.5-pro': 'For my baby, María Claudia',
     'gemini-1.0-pro': 'gemini-1.0-pro',
     'tunedModels/aion-xghgsg5gdv5b': 'aion-1.0',
     'gemini-1.5-flash': 'gemini-1.5-flash',
