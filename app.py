@@ -18,7 +18,7 @@ generation_config = {
 }
 
 # Variable global para el modelo actual
-current_model_name = 'gemini-1.0-pro'
+current_model_name = 'gemini-1.0-,pro'
 
 # Inicialización del modelo principal
 model = genai.GenerativeModel(
@@ -50,7 +50,7 @@ AVAILABLE_MODELS = {
 @app.route('/')
 def index():
     user_agent = request.headers.get('User-Agent', '').lower()
-    if 'median' not in user_agent:
+    if 'offf' not in user_agent:
         return render_template('403.html', message="Acceso restringido al Samsung A71."), 403
 
     return render_template('index.html', modelos=AVAILABLE_MODELS)
