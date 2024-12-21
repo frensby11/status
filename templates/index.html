@@ -12,14 +12,7 @@
 <body>
     <div class="container">
         <div class="modelo-selector-container">
-            <select id="modelo-select">
-                {% for modelo_key, modelo_nombre in modelos.items() %}
-                    <option value="{{ modelo_key }}" 
-                            {% if modelo_key == 'gemini-1.5-pro' %}selected{% endif %}>
-                        {{ modelo_nombre }}
-                    </option>
-                {% endfor %}
-            </select>
+            <h3>De Charles DRR para María CSF</h3>
         </div>
 
         <div id="chat-container"></div>
